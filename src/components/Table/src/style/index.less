@@ -50,14 +50,16 @@
 
   //
   .ant-table {
+    width: 100%;
+    overflow-x: hidden;
     border: none;
 
     &-title {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
       padding: 8px 6px;
       border-bottom: none;
+      justify-content: space-between;
+      align-items: center;
     }
 
     .ant-table-thead > tr > th,
@@ -105,7 +107,10 @@
     border: 1px solid @border-color !important;
   }
 
-  .ant-table td {
+  .ant-table-tbody > tr > td,
+  .ant-table-tbody > tr > th,
+  .ant-table-thead > tr > td,
+  .ant-table-thead > tr > th {
     white-space: nowrap;
   }
 
@@ -133,14 +138,18 @@
     overflow-y: scroll !important;
   }
 
-  .ant-table-fixed-right .ant-table-header {
-    border-left: 1px solid @border-color !important;
+  .ant-table-fixed-right {
+    right: -1px;
 
-    .ant-table-fixed {
-      border-bottom: none;
+    .ant-table-header {
+      border-left: 1px solid @border-color !important;
 
-      .ant-table-thead th {
-        background: rgb(241, 243, 244);
+      .ant-table-fixed {
+        border-bottom: none;
+
+        .ant-table-thead th {
+          background: rgb(241, 243, 244);
+        }
       }
     }
   }

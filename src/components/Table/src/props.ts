@@ -9,19 +9,29 @@ import type {
   TableRowSelection,
 } from './types/table';
 import type { FormProps } from '/@/components/Form';
-import { DEFAULT_SORT_FN, FETCH_SETTING } from './const';
+import { DEFAULT_FILTER_FN, DEFAULT_SORT_FN, FETCH_SETTING } from './const';
 import { propTypes } from '/@/utils/propTypes';
 
 // 注释看 types/table
 export const basicProps = {
   clickToRowSelect: propTypes.bool.def(true),
+
+  isTreeTable: propTypes.bool.def(false),
+
   tableSetting: {
     type: Object as PropType<TableSetting>,
   },
+
   inset: propTypes.bool,
+
   sortFn: {
     type: Function as PropType<(sortInfo: SorterResult) => any>,
     default: DEFAULT_SORT_FN,
+  },
+
+  filterFn: {
+    type: Function as PropType<(data: Partial<Recordable<string[]>>) => any>,
+    default: DEFAULT_FILTER_FN,
   },
 
   showTableSetting: propTypes.bool,
@@ -31,6 +41,11 @@ export const basicProps = {
 
   summaryFunc: {
     type: [Function, Array] as PropType<(...arg: any[]) => any[]>,
+    default: null,
+  },
+
+  summaryData: {
+    type: Array as PropType<Recordable[]>,
     default: null,
   },
 
@@ -63,7 +78,7 @@ export const basicProps = {
   emptyDataIsShowTable: propTypes.bool.def(true),
   // 额外的请求参数
   searchInfo: {
-    type: Object as PropType<any>,
+    type: Object as PropType<Recordable>,
     default: null,
   },
   // 使用搜索表单
